@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'accounts',
+    'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'Contact',
     'Home',
     'Jobs',
-    'bootstrap4'
+    'bootstrap4',
+    
    
     
 ]

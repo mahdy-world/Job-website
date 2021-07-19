@@ -23,8 +23,8 @@ def image_upload(instance,filename):
 class job(models.Model):
     owner = models.ForeignKey(User, related_name ='job_owner', on_delete =models.CASCADE)
     title = models.CharField( max_length=100) 
-    jop_type = models.CharField(max_length=15, choices=JoP_Type)
-    discrations = models.TextField(max_length=1000)
+    job_type = models.CharField(max_length=15, choices=JoP_Type)
+    discrpations = models.TextField(max_length=1000)
     published_at = models.DateTimeField(auto_now=True)
     vacancy = models.IntegerField(default=1)
     salary = models.IntegerField(default=0)

@@ -14,10 +14,10 @@ class City(models.Model):
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image= models.ImageField( upload_to='profile/')
-    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='user_city',  null=True , blank=True)
-    phone = models.CharField(max_length=50)
+    user = models.OneToOneField(User, on_delete=models.CASCADE , verbose_name = "user")
+    image= models.ImageField( upload_to='profile/' , verbose_name = "Image")
+    city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='user_city',  null=True , blank=True , verbose_name = "city")
+    phone = models.CharField(max_length=50 , verbose_name = "Phone")
 
     def __str__(self):
         return str(self.user)
