@@ -15,7 +15,7 @@ def job_list(request):
     all_jobs_list = job.objects.all()
     
 
-    # Filters 
+    # Filters for Job in home page 
     myfilter = JobFilter(request.GET , queryset = all_jobs_list)
     all_jobs_list = myfilter.qs
 

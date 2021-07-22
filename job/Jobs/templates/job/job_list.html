@@ -44,16 +44,7 @@
                                 <div class="col-md-6">
                                     <h4>Job Listing</h4>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="serch_cat d-flex justify-content-end">
-                                        <select>
-                                            <option data-display="Most Recent">Most Recent</option>
-                                            <option value="1">Marketer</option>
-                                            <option value="2">Wordpress </option>
-                                            <option value="4">Designer</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -71,18 +62,16 @@
                                         <div class="jobs_conetent">
                                             <a href="{% url 'jobs:job_detail' job.slug%}"><h4>{{job.title}}</h4></a>
                                             <div class="links_locat d-flex align-items-center">
+                                               
                                                 <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> California, USA</p>
-                                                </div>
-                                                <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i> {{job.jop_type}}</p>
+                                                    <p> <i class="fa fa-clock-o"></i> {{job.job_type}}</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a class="heart_mark" href="#"> <i class="fa fa-heart"></i> </a>
+                                            
                                             <a href="{% url 'jobs:job_detail' job.slug%}" class="boxed-btn3">Apply Now</a>
                                         </div>
                                         <div class="date">

@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'Home',
     'Jobs',
     'bootstrap4',
+    'rest_framework'
     
    
     
@@ -139,3 +140,14 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # This is now a string
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mmos7239@gmail.com'
+EMAIL_HOST_PASSWORD = 'iuvithbscvsxpgfb'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+
