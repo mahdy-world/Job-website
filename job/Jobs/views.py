@@ -20,7 +20,7 @@ def job_list(request):
     all_jobs_list = myfilter.qs
 
 
-    paginator = Paginator(all_jobs_list, 3) # Show 25 contacts per page.
+    paginator = Paginator(all_jobs_list,4) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
