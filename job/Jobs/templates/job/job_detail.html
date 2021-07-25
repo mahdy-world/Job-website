@@ -30,10 +30,10 @@
                                     <a href="#"><h4>{{job.title}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                            <p> <i class="fa fa-map-marker"></i> {{job.companie.name}}</p>
                                         </div>
                                         <div class="location">
-                                            <p> <i class="fa fa-clock-o"></i> {{job.jop_type}}</p>
+                                            <p> <i class="fa fa-clock-o"></i> {{job.job_type}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -74,8 +74,8 @@
                                 <li>Published on: <span>{{job.published_at|date:'d M o'}}</span></li>
                                 <li>Vacancy: <span>{{job.vacancy}}</span></li>
                                 <li>Salary: <span>{{job.salary}}k/y</span></li>
-                                <li>Location: <span>California, USA</span></li>
-                                <li>Job Nature: <span> {{job.jop_type}}</span></li>
+                                <li>Location: <span>{{job.companie.name}}</span></li>
+                                <li>Job Nature: <span> {{job.job_type}}</span></li>
                             </ul>
                         </div>
                     </div>
@@ -88,35 +88,7 @@
                             <li><a href="#"> <i class="fa fa-envelope"></i></a> </li>
                         </ul>
                     </div>
-                    <div class="job_location_wrap">
-                        <div class="job_lok_inner">
-                            <div id="map" style="height: 200px;"></div>
-                            <script>
-                              function initMap() {
-                                var uluru = {lat: -25.363, lng: 131.044};
-                                var grayStyles = [
-                                  {
-                                    featureType: "all",
-                                    stylers: [
-                                      { saturation: -90 },
-                                      { lightness: 50 }
-                                    ]
-                                  },
-                                  {elementType: 'labels.text.fill', stylers: [{color: '#ccdee9'}]}
-                                ];
-                                var map = new google.maps.Map(document.getElementById('map'), {
-                                  center: {lat: -31.197, lng: 150.744},
-                                  zoom: 9,
-                                  styles: grayStyles,
-                                  scrollwheel:  false
-                                });
-                              }
-                              
-                            </script>
-                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
-                            
-                          </div>
-                    </div>
+                   
                 </div>
             </div>
         </div>

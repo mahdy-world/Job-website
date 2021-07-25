@@ -18,9 +18,18 @@ class Profile(models.Model):
     image= models.ImageField( upload_to='profile/' , verbose_name = "Image")
     city = models.ForeignKey(City, on_delete=models.CASCADE, related_name='user_city',  null=True , blank=True , verbose_name = "city")
     phone = models.CharField(max_length=50 , verbose_name = "Phone")
+    job = models.CharField(max_length=50 , verbose_name = "job")
 
     def __str__(self):
         return str(self.user)
+
+class Compaine(models.Model):
+    name = models.CharField(max_length=50 , verbose_name = "Companie name")
+    image = models.ImageField( upload_to='companie/' )
+
+    def __str__(self):
+        return str(self.name)
+
 
 
 ## create empty profile when user sign up >> using signals

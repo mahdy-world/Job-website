@@ -1,9 +1,19 @@
 from django.shortcuts import redirect, render
 from Jobs.models import job
+from accounts.models import Profile , Compaine
 
 # Create your views here.
 def index(request):
+    # Get all profile and rutern just 8 
+    profile = Profile.objects.all().exclude(user=request.user)[0:8]
+    
+    # Get all copmanies and return 4
+
+    com = Compaine.objects.all()[0:4]
+
+    # Get all jobs and return just 4 
     some_jobs = job.objects.all()[0:4]
+    
     if request.method == 'GET' and request.GET.get('Software'):
         jobs = job.objects.filter(category=2)
         all_job = jobs
@@ -59,6 +69,6 @@ def index(request):
         return render(request,'job_list.html' , {'all_job':all_job})        
 
                                                                 
-    return render(request,'home.html', {'some_jobs':some_jobs})
+    return render(request,'home.html', {'some_jobs':some_jobs , 'profile':profile , 'companie':com})
 
 
