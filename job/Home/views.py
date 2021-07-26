@@ -5,7 +5,7 @@ from accounts.models import Profile , Compaine
 # Create your views here.
 def index(request):
     # Get all profile and rutern just 8 
-    profile = Profile.objects.all().exclude(user=request.user)[0:8]
+    profile = Profile.objects.all()
     
     # Get all copmanies and return 4
 
