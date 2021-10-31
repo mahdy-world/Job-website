@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'accounts',
+    'rest_framework',
     'django_filters',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,11 +45,12 @@ INSTALLED_APPS = [
     'Home',
     'Jobs',
     'bootstrap4',
-    'rest_framework'
-    
    
+
     
 ]
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

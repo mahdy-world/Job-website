@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    path('api-auth/', include('rest_framework.urls')),
+    
 
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/',include('accounts.urls',namespace='accounts') ),
@@ -28,6 +28,10 @@ urlpatterns = [
     path('jobs/', include('Jobs.urls', namespace='jobs')),
     path('contact_us/', include('Contact.urls', namespace='contact_us')),
     path('',include('Home.urls',namespace='home') ),
+
+    #REST FRAMEWORK URLS
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/',include('Jobs.Api.urls' , namespace='api')),
    
     
 ]
