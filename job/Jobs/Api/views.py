@@ -1,7 +1,10 @@
 from Jobs.views import job_detail
 from rest_framework import status
-from rest_framework.response import Response
+from rest_framework.response import Response 
 from rest_framework.decorators import api_view
+from django.shortcuts import HttpResponse
+
+from rest_framework import generics
 
 
 
@@ -44,7 +47,7 @@ def job_update(request, slug):
             serializer.save()
             data["success"] = "Update Successfuly"
         return Response({'data' :data})
-    return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)    
+    return Response(serializers.errors, status=status.HTTP_404_NOT_FOUND)    
 
 
 @api_view(['DELETE'])
@@ -64,14 +67,34 @@ def job_delete(request, slug):
     return Response(data = data)    
 
 
-@api_view(['POST'])
-def job_create(request):
-   user  = User.objects.get(pk=1)
-   job_detail = job(owner=user)
+# @api_view(['POST'])
+# def api_job_create(request):
+#     # if request.method == "POST" : 
+#     #     serializer = JobsSerializers(data=request.data)
+#     #     data = {}
+#     #     if serializer.is_valid():
+#     #         serializer.save()
+#     #         data["success"] = "delete successful"
+#     #     else:
+#     #         data["success"] = "delete faild"    
+#     # return Response(data = data)            
+#     return HttpResponse("ahmed")      
 
+class api_create_job(generics.CreateAPIView):
+    serializer_class = JobsSerializers
+
+    def get_queryset(self):
+        return job.objects.all()
+           
+
+@api_view(['POST'])
+def api_category_create(request):
+   
    if request.method == "POST":
-       serializer = JobsSerializers(job_detail , data=request.data)
+       data={}
+       serializer = CategorySerializers( data=request.data)
        if serializer.is_valid():
            serializer.save()
-           return Response(serializer.data , status =status.HTTP_201_CREATED)
-        # return Response(serializer.errors , status=status.HTTP_400_BAD_REQUEST)   
+           data["success"] = "Created"
+           return Response({'data':data}) 
+        

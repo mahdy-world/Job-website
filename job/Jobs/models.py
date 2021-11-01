@@ -24,14 +24,14 @@ def image_upload(instance,filename):
 class job(models.Model):
     owner = models.ForeignKey(User, related_name ='job_owner', on_delete =models.CASCADE)
     title = models.CharField( max_length=100) 
-    job_type = models.CharField(max_length=15, choices=JoP_Type)
-    discrpations = models.TextField(max_length=1000)
+    job_type = models.CharField(max_length=15, choices=JoP_Type , null=True)
+    discrpations = models.TextField(max_length=1000 , null=True)
     published_at = models.DateTimeField(auto_now=True)
-    vacancy = models.IntegerField(default=1)
-    salary = models.IntegerField(default=0)
-    experience = models.IntegerField(default=1)
+    vacancy = models.IntegerField(default=1 , null=True)
+    salary = models.IntegerField(default=0 , null=True)
+    experience = models.IntegerField(default=1 , null=True)
     category = models.ForeignKey('Category' , on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=image_upload)
+    image = models.ImageField(upload_to=image_upload )
     companie = models.ForeignKey(Compaine, related_name='job_companie', verbose_name="companie name", on_delete=models.CASCADE)
 
     slug = models.SlugField(blank=True,null=True)
@@ -50,7 +50,6 @@ class job(models.Model):
 
 class Category (models.Model):
     name = models.CharField(max_length=50)
-
     def __str__(self):
         return self.name
 
