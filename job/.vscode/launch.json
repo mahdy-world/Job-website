@@ -9,6 +9,7 @@
     "django": true,
     "configurations": [
     
+    
         {
             "name": "Python: Django",
             "type": "python",

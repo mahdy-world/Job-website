@@ -9,7 +9,7 @@ from accounts.models import Compaine
 
 # Create your models here.
 
-JoP_Type = (
+Job_type = (
 
     ('full time' , 'full time'),
     ('part time' , 'part time'),
@@ -22,9 +22,10 @@ def image_upload(instance,filename):
     
 
 class job(models.Model):
+
     owner = models.ForeignKey(User, related_name ='job_owner', on_delete =models.CASCADE)
     title = models.CharField( max_length=100) 
-    job_type = models.CharField(max_length=15, choices=JoP_Type , null=True)
+    job_type = models.CharField(max_length=15, choices=Job_type , null=True)
     discrpations = models.TextField(max_length=1000 , null=True)
     published_at = models.DateTimeField(auto_now=True)
     vacancy = models.IntegerField(default=1 , null=True)

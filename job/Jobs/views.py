@@ -14,12 +14,9 @@ from .filters import JobFilter
 def job_list(request):
     all_jobs_list = job.objects.all()
     
-
     # Filters for Job in home page 
     myfilter = JobFilter(request.GET , queryset = all_jobs_list)
     all_jobs_list = myfilter.qs
-
-
     paginator = Paginator(all_jobs_list,4) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -38,7 +35,7 @@ def job_detail(request, slug):
             myform = form.save(commit=False)  
             myform.job =  job_detail
             myform.save()  
-            return redirect(reverse())   
+            return redirect(reverse('Jobs:job_detail'))   
 
     else:
         form = ApplyForm()         
