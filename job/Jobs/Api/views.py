@@ -70,29 +70,32 @@ from Jobs.models import *
 # List ALl job API 
 class api_list_job(generics.ListAPIView):
     queryset = job.objects.all()
-    serializer_class = JobsSerializers
+    serializer_class = JobSerializerList
 
 # Create Job API
 class api_create_job(generics.CreateAPIView):
+    queryset = job.objects.all()
+    serializer_class = JobSerializerCreate
 
-    serializer_class = JobsSerializers
-    def get_queryset(self):
-        return job.objects.all()
+    # To Associate User : the owner who make a request
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user.id)
 
 
 # View Job detail API    
 class api_detail_job(generics.RetrieveAPIView):
     queryset = job.objects.all()
-    serializer_class = JobsSerializers
-    # this because i use slug 
+    serializer_class = JobSerializerDetails
+    # this because i use slug
     lookup_field = 'slug'
 
 
 # Edit Job APi 
 class api_edit_job(generics.RetrieveUpdateAPIView):
     queryset = job.objects.all()
-    serializer_class = JobsSerializers
+    serializer_class = JobSerializerUpdate
     lookup_field = 'slug'
+
 
     # to add delete button in that page 
     def delete(self,request,slug):
@@ -102,7 +105,7 @@ class api_edit_job(generics.RetrieveUpdateAPIView):
 # Delete Job
 class api_delete_job(generics.DestroyAPIView):
     queryset = job.objects.all()
-    serializer_class = JobsSerializers
+    serializer_class = JobSerializerDelete
     lookup_field = 'slug'
 # Create Category API
 
