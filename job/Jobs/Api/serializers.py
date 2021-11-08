@@ -1,5 +1,7 @@
 from rest_framework import serializers
+
 from Jobs.models import *
+
 
 
 # class JobsSerializers(serializers.ModelSerializer):
@@ -41,35 +43,41 @@ from Jobs.models import *
 
 
 class JobSerializerList(serializers.ModelSerializer):
+    url = serializers.HyperlinkedIdentityField (view_name="job_detail",
+    lookup_field="slug")
     class Meta:
         model = job
-        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , "experience" , "image" , "category" , "companie" , "owner" , "slug"
+        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , "experience" , "image" , "category" , "companie" , "owner" , "slug" , "url"
 
 # Custome serializer For Create Job With Forgin Key This Best Another Above
 class JobSerializerCreate(serializers.ModelSerializer):
     class Meta:
         model = job
-        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , "experience" , "image" , "category" , "companie" , "owner" , "slug"
+        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" ,\
+                 "experience" , "image" , "category" , "companie" , "owner" , "slug"
 
 
 
 class JobSerializerUpdate(serializers.ModelSerializer):
     class Meta:
         model = job
-        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , "experience" , "image" , "category" , "companie" , "owner" , "slug"
+        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" ,\
+                 "experience" , "image" , "category" , "companie" , "owner" , "slug"
 
 
 
 class JobSerializerDetails(serializers.ModelSerializer):
     class Meta:
         model = job
-        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , "experience" , "image" , "category" , "companie" , "owner" , "slug"
+        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , \
+                 "experience" , "image" , "category" , "companie" , "owner" , "slug"
 
 
 class JobSerializerDelete(serializers.ModelSerializer):
     class Meta:
         model = job
-        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" , "experience" , "image" , "category" , "companie" , "owner" , "slug"
+        fields = "title" , "job_type" , "discrpations"  , "vacancy" , "salary" ,\
+                 "experience" , "image" , "category" , "companie" , "owner" , "slug"
 
 
 

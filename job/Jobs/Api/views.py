@@ -1,16 +1,13 @@
-from rest_framework.serializers import Serializer
-from Jobs.views import job_detail
-from rest_framework import status
-from rest_framework.response import Response 
-from rest_framework.decorators import api_view
-from django.shortcuts import HttpResponse, get_object_or_404
-
-from rest_framework import generics
-
-
-
 from Jobs.Api.serializers import *
 from Jobs.models import *
+from django.shortcuts import get_object_or_404
+from rest_framework import generics
+from .permissions import IsOwnerOrReadOnly
+from rest_framework.filters import SearchFilter , OrderingFilter
+from .pagination import PostPageNumberPagination , PostLimitOffsetPagination
+
+from rest_framework.permissions import IsAuthenticated , AllowAny , IsAuthenticatedOrReadOnly , IsAdminUser
+
 
 # @api_view(['GET'])
 # def jobsListApi(request):
@@ -71,11 +68,14 @@ from Jobs.models import *
 class api_list_job(generics.ListAPIView):
     queryset = job.objects.all()
     serializer_class = JobSerializerList
-
+    filter_backends = [SearchFilter , OrderingFilter]
+    search_fields = ['title' , 'owner' , 'job_type']
+    pagination_class = PostPageNumberPagination
 # Create Job API
 class api_create_job(generics.CreateAPIView):
     queryset = job.objects.all()
     serializer_class = JobSerializerCreate
+    permission_classes = [IsAuthenticated ]
 
     # To Associate User : the owner who make a request
     def perform_create(self, serializer):
@@ -86,6 +86,7 @@ class api_create_job(generics.CreateAPIView):
 class api_detail_job(generics.RetrieveAPIView):
     queryset = job.objects.all()
     serializer_class = JobSerializerDetails
+    permission_classes = [IsAuthenticated ]
     # this because i use slug
     lookup_field = 'slug'
 
@@ -95,6 +96,7 @@ class api_edit_job(generics.RetrieveUpdateAPIView):
     queryset = job.objects.all()
     serializer_class = JobSerializerUpdate
     lookup_field = 'slug'
+    permission_classes = [IsAuthenticated , IsOwnerOrReadOnly]
 
 
     # to add delete button in that page 
