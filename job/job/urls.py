@@ -27,6 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('jobs/', include('Jobs.urls', namespace='jobs')),
     path('contact_us/', include('Contact.urls', namespace='contact_us')),
+    path('weather/', include('Weather.urls', namespace='weather')),
+
     path('',include('Home.urls',namespace='home') ),
 
     #REST FRAMEWORK URLS
